@@ -1,0 +1,6 @@
+﻿CREATE PROC spRead
+AS
+BEGIN
+	SELECT * FROM Student 
+	ORDER BY Id
+END
