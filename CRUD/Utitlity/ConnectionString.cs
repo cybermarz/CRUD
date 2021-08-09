@@ -7,7 +7,7 @@ namespace CRUD.Utitlity
 {
     public class ConnectionString
     {
-        private static string cName = "Data Source=.; Initial Catalog=StudentManagement; User ID=ozal; Password=12345";
+        private static string cName = "OZAL-PC\\SQLSERVER;Initial Catalog=StudentManagement;Integrated Security=True";
         public static string CName { get => cName;
         }
     }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using CRUD.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,12 @@ namespace CRUD.Controllers
 {
     public class StudentController : Controller
     {
+        StudentDataAccessLayer studentDataAccessLayer = null;
+        public StudentController()
+        {
+            studentDataAccessLayer = new StudentDataAccessLayer();
+
+        }
         // GET: StudentController
         public ActionResult Index()
         {
