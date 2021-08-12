@@ -14,18 +14,19 @@ namespace CRUD.Controllers
         public StudentController()
         {
             studentDataAccessLayer = new StudentDataAccessLayer();
-
         }
         // GET: StudentController
         public ActionResult Index()
         {
-            return View();
+            IEnumerable<StudentViewModel> students = studentDataAccessLayer.Read();
+            return View(students);
         }
 
         // GET: StudentController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            StudentViewModel student = studentDataAccessLayer.GetStudent(id);
+            return View(student);
         }
 
         // GET: StudentController/Create
@@ -37,10 +38,11 @@ namespace CRUD.Controllers
         // POST: StudentController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(StudentViewModel student)
         {
             try
             {
+               studentDataAccessLayer.AddStudent(student);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -52,16 +54,18 @@ namespace CRUD.Controllers
         // GET: StudentController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            StudentViewModel student = studentDataAccessLayer.GetStudent(id);
+            return View(student);
         }
 
         // POST: StudentController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(StudentViewModel student)
         {
             try
             {
+                studentDataAccessLayer.UpdateStudent(student);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -73,16 +77,18 @@ namespace CRUD.Controllers
         // GET: StudentController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            StudentViewModel student = studentDataAccessLayer.GetStudent(id);
+            return View(student);
         }
 
         // POST: StudentController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(StudentViewModel student)
         {
             try
             {
+                studentDataAccessLayer.DeleteStudent(student.Id);
                 return RedirectToAction(nameof(Index));
             }
             catch
