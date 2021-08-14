@@ -17,14 +17,14 @@ namespace CRUD.Models
         {
             using (SqlConnection con = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand("spAdd", con);
+                SqlCommand cmd = new SqlCommand("spCreate", con);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@FirstName", student.FirstName);
                 cmd.Parameters.AddWithValue("@LastName", student.LastName);
                 cmd.Parameters.AddWithValue("@Email", student.Email);
                 cmd.Parameters.AddWithValue("@Mobile", student.Mobile);
-                cmd.Parameters.AddWithValue("@Adresss", student.Addresss);
+                cmd.Parameters.AddWithValue("@Addresss", student.Addresss);
 
                 con.Open();
                 cmd.ExecuteNonQuery();
@@ -68,7 +68,7 @@ namespace CRUD.Models
                 SqlCommand cmd = new SqlCommand("spUpdate", con);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@ID", student.Id);
+                cmd.Parameters.AddWithValue("@Id", student.Id);
                 cmd.Parameters.AddWithValue("@FirstName", student.FirstName);
                 cmd.Parameters.AddWithValue("@LastName", student.LastName);
                 cmd.Parameters.AddWithValue("@Email", student.Email);
@@ -101,7 +101,8 @@ namespace CRUD.Models
             StudentViewModel student = new StudentViewModel();
             using(SqlConnection con = new SqlConnection(connectionString))
             {
-                string sqlquery = "SELECT * FROM Student WHERE id= " + Id;
+                string sqlquery = 
+                    "SELECT * FROM Student WHERE Id= " + Id;
                 SqlCommand cmd = new SqlCommand(sqlquery, con);
 
                 con.Open();
@@ -115,9 +116,9 @@ namespace CRUD.Models
                     student.Mobile = rdr["Mobile"].ToString();
                     student.Addresss = rdr["Addresss"].ToString();
                 }
+                con.Close();
             }
             return student;
         }
-
     }
 }

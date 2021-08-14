@@ -45,7 +45,7 @@ namespace CRUD.Controllers
                studentDataAccessLayer.AddStudent(student);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch(Exception e)
             {
                 return View();
             }
@@ -68,7 +68,7 @@ namespace CRUD.Controllers
                 studentDataAccessLayer.UpdateStudent(student);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception e)
             {
                 return View();
             }

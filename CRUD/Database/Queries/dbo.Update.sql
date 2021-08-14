@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE spUpdateStudent(
+﻿CREATE PROCEDURE spUpdate(
 	@Id			INT,
 	@FirstName	VARCHAR(50),
 	@LastName	VARCHAR(50),
